@@ -1,0 +1,11 @@
+# Databricks App manifest for the on-behalf-of-user variant (dbxapp_app.py).
+# See docs/05-appendix-databricks-app-obo.md.
+#
+# After the app's compute is ACTIVE, enable on-behalf-of-user auth:
+#   databricks apps update <app-name> --json '{"user_api_scopes": ["genie", "sql"]}'
+command:
+  - python3
+  - dbxapp_app.py
+env:
+  - name: GENIE_SPACE_ID
+    value: "<your-genie-space-id>"
