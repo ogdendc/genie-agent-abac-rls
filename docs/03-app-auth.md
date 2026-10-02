@@ -24,8 +24,10 @@ right and to test with two different users.
 `current_user()` can only scope correctly if the caller is a **real Databricks
 account user**. That means:
 
-- Each end user is provisioned as a Databricks account user (normally SCIM from your
-  IdP), and
+- Each end user is provisioned as a Databricks account user from your IdP —
+  Databricks' **Automatic Identity Management (AIM)** is the preferred approach (IdP
+  users/groups/service principals are available automatically, no manual provisioning),
+  with **SCIM provisioning** as the established alternative — and
 - Your app obtains **that user's own** access token and calls Genie with it.
 
 **Not supported today:** a single app credential impersonating many end users who are

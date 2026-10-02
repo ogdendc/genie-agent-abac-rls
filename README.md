@@ -55,8 +55,13 @@ So this reference has two independent halves, and **both** must be right:
 ## Hard prerequisite (read before you design)
 
 For `current_user()` to resolve to a real person, **each end user must be a Databricks
-account user** (typically SCIM-provisioned from your IdP). The supported production
-pattern is: your app obtains *that user's own* token and calls Genie with it.
+account user**, provisioned from your identity provider. Databricks'
+**[Automatic Identity Management (AIM)](https://docs.databricks.com/aws/en/admin/users-groups/automatic-identity-management)**
+— which makes your IdP's users, groups, and service principals available in Databricks
+automatically, without configuring manual provisioning — is the **preferred approach**;
+**SCIM provisioning** is the established alternative. Either way, the signed-in user has
+to exist as a Databricks account identity. The supported production pattern is then: your
+app obtains *that user's own* token and calls Genie with it.
 
 **Not supported today:** one application credential impersonating many users who are
 *not* Databricks account users ("app-delegated auth" is still in flight). If your users
